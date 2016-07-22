@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: Check out from git
+      git: repo=wni@wni:/Users/wni/btob/ansible-pull dest=ansible-pull-clone
+      # only execute when there is some change
+      notify:
+        - Check out done
+
+  handlers:
+    - name: Check out done
+      service: name=nginx state=started
